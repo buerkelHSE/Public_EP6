@@ -1,13 +1,21 @@
+class Schiff:
+    def __init__(self, name, kapazitaet):
+        self.name = name
+        self.kapazitaet = kapazitaet
+        self.position = (0, 0)  # x, y Koordinaten
+
+    def set_position(self, x, y):
+        self.position = (x, y)
+        
 '''
 Klasse für Flugzeugträger. Hat Liste mit Flugzeugen, maximale Anzahl, sowie Funktionen
 zum Hinzufügen und starten von Flugzeugen
 '''
-class Flugzeugtraeger:
+class Flugzeugtraeger(Schiff):
     def __init__(self, name, kapazitaet, max_flugzeuge):
-        self.name = name
+        Schiff.__init__(self, name, kapazitaet)
         self.max_flugzeuge = max_flugzeuge
         self.flugzeuge = []
-        self.kapazitaet=kapazitaet
 
     #Entfernt Flugzeug von Liste und startet es
     def starte_flugzeug(self, flugzeug):
