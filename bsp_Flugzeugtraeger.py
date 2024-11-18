@@ -1,3 +1,17 @@
+
+class Flugplatz:
+    def __init__(self, name, max_flugzeuge):
+        self.name = name
+        self.max_flugzeuge = max_flugzeuge
+        self.flugzeuge = []
+
+    def add_flugzeug(self, flugzeug):
+        if len(self.flugzeuge) < self.max_flugzeuge:
+            self.flugzeuge.append(flugzeug)
+            print("Flugzeug erfolgreich hinzugefügt.")
+        else:
+            print("Maximale Anzahl an Flugzeugen erreicht.")
+            
 class Schiff:
     def __init__(self, name, kapazitaet):
         self.name = name
@@ -6,16 +20,15 @@ class Schiff:
 
     def set_position(self, x, y):
         self.position = (x, y)
-        
 '''
 Klasse für Flugzeugträger. Hat Liste mit Flugzeugen, maximale Anzahl, sowie Funktionen
 zum Hinzufügen und starten von Flugzeugen
 '''
-class Flugzeugtraeger(Schiff):
+
+class Flugzeugtraeger(Schiff, Flugplatz):
     def __init__(self, name, kapazitaet, max_flugzeuge):
+        Flugplatz.__init__(self, name, max_flugzeuge)
         Schiff.__init__(self, name, kapazitaet)
-        self.max_flugzeuge = max_flugzeuge
-        self.flugzeuge = []
 
     #Entfernt Flugzeug von Liste und startet es
     def starte_flugzeug(self, flugzeug):
@@ -27,14 +40,6 @@ class Flugzeugtraeger(Schiff):
         else:
             print("Flugzeug nicht gefunden.")
         
-    # Fügt Flugzeug hinzu, falls maximalanzahl noch nicht erreicht
-    def add_flugzeug(self, flugzeug):
-        if len(self.flugzeuge) < self.max_flugzeuge:
-            self.flugzeuge.append(flugzeug)
-            print("Flugzeug erfolgreich hinzugefügt.")
-        else:
-            print("Maximale Anzahl an Flugzeugen erreicht.")
-
 class Flugzeug:
     def __init__(self, name, gewicht):
         self.name = name
