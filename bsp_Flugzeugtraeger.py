@@ -39,7 +39,19 @@ class Flugzeugtraeger(Schiff, Flugplatz):
             print("Flugzeug", flugzeug.name ,"gestartet.")
         else:
             print("Flugzeug nicht gefunden.")
-        
+            
+    def add_flugzeug(self, flugzeug):
+        if flugzeug.gewicht > self.kapazitaet:
+            print("Keine Kapazität!")
+            return
+        if len(self.flugzeuge) < self.max_flugzeuge:
+            self.flugzeuge.append(flugzeug)
+            print("Flugzeug erfolgreich hinzugefügt.")
+            self.kapazitaet-=flugzeug.gewicht
+        else:
+            print("Maximale Anzahl an Flugzeugen erreicht.")
+            
+            
 class Flugzeug:
     def __init__(self, name, gewicht):
         self.name = name
