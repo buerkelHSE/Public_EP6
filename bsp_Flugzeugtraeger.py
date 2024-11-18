@@ -37,6 +37,7 @@ class Flugzeugtraeger(Schiff, Flugplatz):
             # Simuliere Startvorgang
             self.flugzeuge.remove(flugzeug)
             print("Flugzeug", flugzeug.name ,"gestartet.")
+            self.kapazitaet+=flugzeug.gewicht
         else:
             print("Flugzeug nicht gefunden.")
             
@@ -57,9 +58,14 @@ class Flugzeug:
         self.name = name
         self.gewicht = gewicht
         
+class roter_Baron(Flugzeug):
+    def salto(self):
+        print("Hui! Ein Salto!")
+        
 # Beispielinstanz erzeugen
 traeger = Flugzeugtraeger("Aircraft Carrier", 100000, 50)
 
-flugz=Flugzeug("F-16",1000)
+flugz=roter_Baron("Roter Baron",1000)
+flugz.salto()
 traeger.add_flugzeug(flugz)
 traeger.starte_flugzeug(flugz)  # Starten eines Flugzeugs
